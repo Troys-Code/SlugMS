@@ -47,6 +47,10 @@ public class BanCommand extends Command {
             player.yellowMessage("Syntax: !ban <IGN> <Reason> (Please be descriptive)");
             return;
         }
+        if (player.isGM()) {
+                player.yellowMessage("GM Player cannot be banned.");
+                return;
+            }
         String ign = params[0];
         String reason = joinStringFrom(params, 1);
         MapleCharacter target = c.getChannelServer().getPlayerStorage().getCharacterByName(ign);
