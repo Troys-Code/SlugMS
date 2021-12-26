@@ -11255,6 +11255,8 @@ public class MapleCharacter extends AbstractMapleCharacterObject {
             throw new NotEnabledException();
         }
         if (getLevel() != 200) {
+            yellowMessage("Rebirth is only available at level 200!");
+            yellowMessage("Please try again in " + (200 - getLevel()) + " more levels.");
             return;
         }
         addReborns();

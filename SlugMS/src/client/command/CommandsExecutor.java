@@ -211,7 +211,9 @@ public class CommandsExecutor {
         addCommand("mylawn", MapOwnerClaimCommand.class);
         addCommand("bosshp", BossHpCommand.class);
         addCommand("mobhp", MobHpCommand.class);
-        
+        if(config.YamlConfig.config.server.USE_REBIRTH_SYSTEM){
+            addCommand("reborn", RebirthCommand.class);
+        }
         commandsNameDesc.add(levelCommandsCursor);
     }
 
