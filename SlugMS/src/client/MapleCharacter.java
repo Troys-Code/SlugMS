@@ -11263,6 +11263,8 @@ public class MapleCharacter extends AbstractMapleCharacterObject {
         changeJob(MapleJob.BEGINNER);
         setLevel(0);
         levelUp(true);
+        yellowMessage("Congrats! Take 25k NX to celebrate the accomplishment.");
+        this.getCashShop().gainCash(1, 25000);
     }
     
     //EVENTS
