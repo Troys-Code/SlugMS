@@ -51,20 +51,24 @@ public class JailCommand extends Command {
             }
         }
 
-        MapleCharacter victim = c.getWorldServer().getPlayerStorage().getCharacterByName(params[0]);
-        if (victim != null) {
-            victim.addJailExpirationTime(minutesJailed * 60 * 1000);
+        MapleCharacter target = c.getWorldServer().getPlayerStorage().getCharacterByName(params[0]);
+        if (target != null) {
+            if (target.isGM()){
+            player.yellowMessage("GM Player '" + params[0] + "' cannot be jailed.");
+            return;
+        }
+            target.addJailExpirationTime(minutesJailed * 60 * 1000);
 
             int mapid = 300000012;
 
-            if (victim.getMapId() != mapid) {    // those gone to jail won't be changing map anyway
-                MapleMap target = c.getChannelServer().getMapFactory().getMap(mapid);
-                MaplePortal targetPortal = target.getPortal(0);
-                victim.saveLocationOnWarp();
-                victim.changeMap(target, targetPortal);
-                player.message(victim.getName() + " was jailed for " + minutesJailed + " minutes.");
+            if (target.getMapId() != mapid) {    // those gone to jail won't be changing map anyway
+                MapleMap targetMap = c.getChannelServer().getMapFactory().getMap(mapid);
+                MaplePortal targetPortal = targetMap.getPortal(0);
+                target.saveLocationOnWarp();
+                target.changeMap(targetMap, targetPortal);
+                player.message(target.getName() + " was jailed for " + minutesJailed + " minutes.");
             } else {
-                player.message(victim.getName() + "'s time in jail has been extended for " + minutesJailed + " minutes.");
+                player.message(target.getName() + "'s time in jail has been extended for " + minutesJailed + " minutes.");
             }
 
         } else {
