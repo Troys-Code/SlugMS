@@ -211,10 +211,11 @@ public class CommandsExecutor {
         addCommand("mylawn", MapOwnerClaimCommand.class);
         addCommand("bosshp", BossHpCommand.class);
         addCommand("mobhp", MobHpCommand.class);
-        addCommand("resetap", ResetApCommand.class); // Reset AP to 4/4/4/4
-        if(config.YamlConfig.config.server.USE_REBIRTH_SYSTEM){
+        if(config.YamlConfig.config.server.USE_RESET_AP_SYSTEM); // Reset AP to 4/4/4/4 Command (available to all)
+            addCommand("resetap", ResetApCommand.class);
+        if(config.YamlConfig.config.server.USE_REBIRTH_SYSTEM)
             addCommand("reborn", RebirthCommand.class);
-        }
+
         commandsNameDesc.add(levelCommandsCursor);
     }
 

@@ -1642,18 +1642,7 @@ public class MapleItemInformationProvider {
             return itemz;
         }
         boolean highfivestamp = false;
-        /* Removed because players shouldn't even get this, and gm's should just be gm job.
-         try {
-         for (Pair<Item, MapleInventoryType> ii : ItemFactory.INVENTORY.loadItems(chr.getId(), false)) {
-         if (ii.getRight() == MapleInventoryType.CASH) {
-         if (ii.getLeft().getItemId() == 5590000) {
-         highfivestamp = true;
-         }
-         }
-         }
-         } catch (SQLException ex) {
-            ex.printStackTrace();
-         }*/
+        
         int tdex = chr.getDex(), tstr = chr.getStr(), tint = chr.getInt(), tluk = chr.getLuk(), fame = chr.getFame();
         if (chr.getJob() != MapleJob.SUPERGM || chr.getJob() != MapleJob.GM) {
             for (Item item : inv.list()) {
@@ -1673,12 +1662,7 @@ public class MapleItemInformationProvider {
                     reqLevel = 0;
                 }
             }
-            /*
-             int reqJob = getEquipStats(equip.getItemId()).get("reqJob");
-             if (reqJob != 0) {
-             Really hard check, and not really needed in this one
-             Gm's should just be GM job, and players cannot change jobs.
-             }*/
+            
             if (reqLevel > chr.getLevel()) {
                 continue;
             } else if (getEquipStats(equip.getItemId()).get("reqDEX") > tdex) {
@@ -1728,25 +1712,12 @@ public class MapleItemInformationProvider {
 
 
         boolean highfivestamp = false;
-        /* Removed check above for message ><
-         try {
-         for (Pair<Item, MapleInventoryType> ii : ItemFactory.INVENTORY.loadItems(chr.getId(), false)) {
-         if (ii.getRight() == MapleInventoryType.CASH) {
-         if (ii.getLeft().getItemId() == 5590000) {
-         highfivestamp = true;
-         }
-         }
-         }
-         } catch (SQLException ex) {
-            ex.printStackTrace();
-         }*/
 
         int reqLevel = getEquipLevelReq(equip.getItemId());
         if (highfivestamp) {
             reqLevel -= 5;
         }
         int i = 0; //lol xD
-        //Removed job check. Shouldn't really be needed.
         if (reqLevel > chr.getLevel()) {
             i++;
         } else if (getEquipStats(equip.getItemId()).get("reqDEX") > chr.getTotalDex()) {

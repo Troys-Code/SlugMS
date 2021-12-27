@@ -106,6 +106,7 @@ public class ServerConfig {
     public boolean USE_ENABLE_FULL_RESPAWN;
     public boolean USE_ENABLE_CHAT_LOG;
     public boolean USE_REBIRTH_SYSTEM;
+    public boolean USE_RESET_AP_SYSTEM; // Reset AP Command available to all
     public boolean USE_MAP_OWNERSHIP_SYSTEM;
     public boolean USE_FISHING_SYSTEM;
     public boolean USE_NPCS_SCRIPTABLE;
