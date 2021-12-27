@@ -1054,7 +1054,7 @@ public class MapleCharacter extends AbstractMapleCharacterObject {
     public void setMasteries(int jobId) {
         int[] skills = new int[4];
         for (int i = 0; i > skills.length; i++) {
-            skills[i] = 0; //that initialization meng
+            skills[i] = 0; //Initialization
         }
         if (jobId == 112) {
             skills[0] = Hero.ACHILLES;
@@ -1155,7 +1155,7 @@ public class MapleCharacter extends AbstractMapleCharacterObject {
 
     public synchronized void changeJob(MapleJob newJob) {
         if (newJob == null) {
-            return;//the fuck you doing idiot!
+            return;
         }
         
         if (canRecvPartySearchInvite && getParty() == null) {
@@ -3787,23 +3787,13 @@ public class MapleCharacter extends AbstractMapleCharacterObject {
             //boolean nestedCancel = false;
             
             chrLock.lock();
-            try {
-                /*
-                if (buffExpires.get(cancelEffectCancelTasks.getRight().effect.getBuffSourceId()) != null) {
-                    nestedCancel = true;
-                }*/
-            
+            try {            
                 if(cancelEffectCancelTasks.getRight().bestApplied) {
                     fetchBestEffectFromItemEffectHolder(cancelEffectCancelTasks.getLeft());
                 }
             } finally {
                 chrLock.unlock();
             }
-
-            /*
-            if (nestedCancel) {
-                this.cancelEffect(cancelEffectCancelTasks.getRight().effect, false, -1, false);
-            }*/
         }
     }
     
@@ -4309,11 +4299,7 @@ public class MapleCharacter extends AbstractMapleCharacterObject {
                     MapleBuffStat mbs = ps.getLeft();
                     if (retrievedStats.contains(mbs)) {
                         MapleBuffStatValueHolder mbsvhe = effects.get(mbs);
-                        
-                        // this shouldn't even be null...
-                        //if (mbsvh != null) {
-                            yokeStats.put(mbsvh, mbsvhe.effect);
-                        //}
+                        yokeStats.put(mbsvh, mbsvhe.effect);
                     }
                 }
             }
@@ -8872,15 +8858,6 @@ public class MapleCharacter extends AbstractMapleCharacterObject {
             client.disconnect(false, false);
             FilePrinter.print(FilePrinter.AUTOBAN_DC, message);
         }
-        //Server.getInstance().broadcastGMMessage(0, MaplePacketCreator.serverNotice(1, getName() + " received this - " + text));
-        //announce(MaplePacketCreator.sendPolice(text));
-        //this.isbanned = true;
-        //TimerManager.getInstance().schedule(new Runnable() {
-        //    @Override
-        //    public void run() {
-        //        client.disconnect(false, false);
-        //    }
-        //}, 6000);
     }
 
     public void sendKeymap() {
@@ -9588,12 +9565,6 @@ public class MapleCharacter extends AbstractMapleCharacterObject {
                 upgradeableEquipped.add(new Pair<>(eq, eq.getStats()));
                 equipUpgrades.put(eq, new LinkedList<Pair<StatUpgrade, Integer>>());
             }
-
-            /*
-            for (Entry<StatUpgrade, Float> es : statups.entrySet()) {
-                System.out.println(es);
-            }
-            */
 
             for (Entry<StatUpgrade, Float> e : statups.entrySet()) {
                 Double ev = Math.sqrt(e.getValue());
@@ -10615,10 +10586,6 @@ public class MapleCharacter extends AbstractMapleCharacterObject {
         if (extraRecoveryTask != null) { extraRecoveryTask.cancel(true); }
         extraRecoveryTask = null;
 
-        // already done on unregisterChairBuff
-        /* if (chairRecoveryTask != null) { chairRecoveryTask.cancel(true); }
-        chairRecoveryTask = null; */
-
         if (pendantOfSpirit != null) { pendantOfSpirit.cancel(true); }
         pendantOfSpirit = null;
         
@@ -10887,105 +10854,7 @@ public class MapleCharacter extends AbstractMapleCharacterObject {
             FilePrinter.printError(FilePrinter.CHANGE_CHARACTER_NAME, e, "Character ID : " + characterId);
             return false;
         }
-        /*try (PreparedStatement ps = con.prepareStatement("UPDATE playernpcs SET name = ? WHERE name = ?")) {
-            ps.setString(1, newName);
-            ps.setString(2, oldName);
-            ps.executeUpdate();
-        } catch(SQLException e) { 
-            e.printStackTrace();
-            FilePrinter.printError(FilePrinter.CHANGE_CHARACTER_NAME, e, "Character ID : " + characterId);
-            return false;
-        }
-        try (PreparedStatement ps = con.prepareStatement("UPDATE gifts SET `from` = ? WHERE `from` = ?")) {
-            ps.setString(1, newName);
-            ps.setString(2, oldName);
-            ps.executeUpdate();
-        } catch(SQLException e) { 
-            e.printStackTrace();
-            FilePrinter.printError(FilePrinter.CHANGE_CHARACTER_NAME, e, "Character ID : " + characterId);
-            return false;
-        }
-        try (PreparedStatement ps = con.prepareStatement("UPDATE dueypackages SET SenderName = ? WHERE SenderName = ?")) {
-            ps.setString(1, newName);
-            ps.setString(2, oldName);
-            ps.executeUpdate();
-        } catch(SQLException e) { 
-            e.printStackTrace();
-            FilePrinter.printError(FilePrinter.CHANGE_CHARACTER_NAME, e, "Character ID : " + characterId);
-            return false;
-        }
-        try (PreparedStatement ps = con.prepareStatement("UPDATE dueypackages SET SenderName = ? WHERE SenderName = ?")) {
-            ps.setString(1, newName);
-            ps.setString(2, oldName);
-            ps.executeUpdate();
-        } catch(SQLException e) { 
-            e.printStackTrace();
-            FilePrinter.printError(FilePrinter.CHANGE_CHARACTER_NAME, e, "Character ID : " + characterId);
-            return false;
-        }
-        try (PreparedStatement ps = con.prepareStatement("UPDATE inventoryitems SET owner = ? WHERE owner = ?")) { //GMS doesn't do this
-            ps.setString(1, newName);
-            ps.setString(2, oldName);
-            ps.executeUpdate();
-        } catch(SQLException e) { 
-            e.printStackTrace();
-            FilePrinter.printError(FilePrinter.CHANGE_CHARACTER_NAME, e, "Character ID : " + characterId);
-            return false;
-        }
-        try (PreparedStatement ps = con.prepareStatement("UPDATE mts_items SET owner = ? WHERE owner = ?")) { //GMS doesn't do this
-            ps.setString(1, newName);
-            ps.setString(2, oldName);
-            ps.executeUpdate();
-        } catch(SQLException e) { 
-            e.printStackTrace();
-            FilePrinter.printError(FilePrinter.CHANGE_CHARACTER_NAME, e, "Character ID : " + characterId);
-            return false;
-        }
-        try (PreparedStatement ps = con.prepareStatement("UPDATE newyear SET sendername = ? WHERE sendername = ?")) {
-            ps.setString(1, newName);
-            ps.setString(2, oldName);
-            ps.executeUpdate();
-        } catch(SQLException e) { 
-            e.printStackTrace();
-            FilePrinter.printError(FilePrinter.CHANGE_CHARACTER_NAME, e, "Character ID : " + characterId);
-            return false;
-        }
-        try (PreparedStatement ps = con.prepareStatement("UPDATE newyear SET receivername = ? WHERE receivername = ?")) {
-            ps.setString(1, newName);
-            ps.setString(2, oldName);
-            ps.executeUpdate();
-        } catch(SQLException e) { 
-            e.printStackTrace();
-            FilePrinter.printError(FilePrinter.CHANGE_CHARACTER_NAME, e, "Character ID : " + characterId);
-            return false;
-        }
-        try (PreparedStatement ps = con.prepareStatement("UPDATE notes SET `to` = ? WHERE `to` = ?")) {
-            ps.setString(1, newName);
-            ps.setString(2, oldName);
-            ps.executeUpdate();
-        } catch(SQLException e) { 
-            e.printStackTrace();
-            FilePrinter.printError(FilePrinter.CHANGE_CHARACTER_NAME, e, "Character ID : " + characterId);
-            return false;
-        }
-        try (PreparedStatement ps = con.prepareStatement("UPDATE notes SET `from` = ? WHERE `from` = ?")) {
-            ps.setString(1, newName);
-            ps.setString(2, oldName);
-            ps.executeUpdate();
-        } catch(SQLException e) { 
-            e.printStackTrace();
-            FilePrinter.printError(FilePrinter.CHANGE_CHARACTER_NAME, e, "Character ID : " + characterId);
-            return false;
-        }
-        try (PreparedStatement ps = con.prepareStatement("UPDATE nxcode SET retriever = ? WHERE retriever = ?")) {
-            ps.setString(1, newName);
-            ps.setString(2, oldName);
-            ps.executeUpdate();
-        } catch(SQLException e) { 
-            e.printStackTrace();
-            FilePrinter.printError(FilePrinter.CHANGE_CHARACTER_NAME, e, "Character ID : " + characterId);
-            return false;
-        }*/
+        
         if(nameChangeId != -1) {
             try (PreparedStatement ps = con.prepareStatement("UPDATE namechanges SET completionTime = ? WHERE id = ?")) {
                 ps.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
