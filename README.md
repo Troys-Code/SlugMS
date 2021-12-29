@@ -10,8 +10,9 @@ added Clear Debuffs to GM command !heal
 
 Added Clear Debuffs to GM command !buffme
 
-HD Client + HD UI.WZ
-
+12/28/2021
+Implemented: 
+	HD Client + HD UI.WZ
 
 May want to DECIDE WHAT TO DO WITH AP ON REBIRTH for custom features.
 12/26/2021
