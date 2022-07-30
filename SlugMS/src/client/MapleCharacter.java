@@ -11118,24 +11118,37 @@ public class MapleCharacter extends AbstractMapleCharacterObject {
         throw new RuntimeException();
     }
 
-    public void executeReborn() {
+    public void executeReborn(char NoobType) {
         if (!YamlConfig.config.server.USE_REBIRTH_SYSTEM) {
             yellowMessage("Rebirth system is not enabled!");
             throw new NotEnabledException();
         }
-        if (getLevel() != 200) {
-            yellowMessage("Rebirth is only available at level 200!");
-            yellowMessage("Please try again in " + (200 - getLevel()) + " more levels.");
+        
+        if (getLevel() < 120) {
+            yellowMessage("Rebirth is only available beginning at level 120!");
+            yellowMessage("Please try again in " + (120 - getLevel()) + " more levels.");
             return;
         }
         addReborns();
-        changeJob(MapleJob.BEGINNER);
+        switch (NoobType) {
+        // Aran class
+            case 'A':
+                changeJob(MapleJob.LEGEND);
+                break;
+        // Cygnus Knight class
+            case 'C':
+                changeJob(MapleJob.NOBLESSE);
+                break;
+        // Anything Else will be Beginner
+            default:
+                changeJob(MapleJob.BEGINNER);
+                break;
+        }
         setLevel(0);
         levelUp(true);
         yellowMessage("Congrats! Take 25k NX to celebrate the accomplishment.");
         this.getCashShop().gainCash(1, 25000);
     }
-    
     //EVENTS
     private byte team = 0;
     private MapleFitness fitness;

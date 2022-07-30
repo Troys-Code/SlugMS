@@ -213,9 +213,11 @@ public class CommandsExecutor {
         addCommand("mobhp", MobHpCommand.class);
         if(config.YamlConfig.config.server.USE_RESET_AP_SYSTEM); // Reset AP to 4/4/4/4 Command (available to all)
             addCommand("resetap", ResetApCommand.class);
-        if(config.YamlConfig.config.server.USE_REBIRTH_SYSTEM)
-            addCommand("reborn", RebirthCommand.class);
-
+        if(config.YamlConfig.config.server.USE_REBIRTH_SYSTEM) {
+            addCommand("rebornAran", RebirthAranCommand.class); // Legend
+            addCommand("rebornCygnus", RebirthCygnusCommand.class); // Noblesse
+            addCommand("rebornExplorer", RebirthExplorerCommand.class); // Beginner
+        }
         commandsNameDesc.add(levelCommandsCursor);
     }
 

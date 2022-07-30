@@ -8,12 +8,12 @@ import client.command.Command;
  * @author Troy Schultz
  */
 
-public class RebirthCommand extends Command { 
+public class RebirthExplorerCommand extends Command { 
 {
     setDescription("");
 }
     @Override
 public void execute(MapleClient c, String[] params) {
-    c.getPlayer().executeReborn();
+    c.getPlayer().executeReborn('E');
     }
 }
