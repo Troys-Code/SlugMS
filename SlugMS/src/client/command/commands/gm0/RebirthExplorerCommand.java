@@ -10,7 +10,7 @@ import client.command.Command;
 
 public class RebirthExplorerCommand extends Command { 
 {
-    setDescription("");
+    setDescription("Reset : Lvl to 1 with all ap + 5 bonus ap and previously leveled skills/passives saved on keys");
 }
     @Override
 public void execute(MapleClient c, String[] params) {
