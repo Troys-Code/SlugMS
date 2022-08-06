@@ -11145,6 +11145,7 @@ public class MapleCharacter extends AbstractMapleCharacterObject {
                 break;
         }
         setLevel(0);
+        setExp(0); // Fix for Overleveling after rebirth from carryove exp
         levelUp(true);
         yellowMessage("Congrats! Take 25k NX to celebrate the accomplishment.");
         this.getCashShop().gainCash(1, 25000);
