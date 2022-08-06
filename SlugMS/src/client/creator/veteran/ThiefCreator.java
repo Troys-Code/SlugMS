@@ -53,8 +53,8 @@ public class ThiefCreator extends CharacterFactory {
                         giveEquipment(recipe, ii, weapons[i]);
                 }
                 
-                giveItem(recipe, 2070000, 500, MapleInventoryType.USE);
-
+                giveItem(recipe, 2070001, 5000, MapleInventoryType.USE); // Wolbi Throwing-Stars
+                
                 giveItem(recipe, 2000002, 100, MapleInventoryType.USE);
                 giveItem(recipe, 2000003, 100, MapleInventoryType.USE);
                 giveItem(recipe, 3010000, 1, MapleInventoryType.SETUP);

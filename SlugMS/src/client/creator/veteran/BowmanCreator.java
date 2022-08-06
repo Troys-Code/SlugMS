@@ -53,6 +53,9 @@ public class BowmanCreator extends CharacterFactory {
                         giveEquipment(recipe, ii, weapons[i]);
                 }
 
+                giveItem(recipe, 2060001, 10000, MapleInventoryType.USE); // Bronze Arrow for Bow
+                giveItem(recipe, 2061001, 10000, MapleInventoryType.USE); // Bronze Arrow for Crossbow
+                
                 giveItem(recipe, 2000002, 100, MapleInventoryType.USE);
                 giveItem(recipe, 2000003, 100, MapleInventoryType.USE);
                 giveItem(recipe, 3010000, 1, MapleInventoryType.SETUP);
