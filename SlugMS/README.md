@@ -1,4 +1,4 @@
-﻿<img src="https://SlugMSsurveyhome.files.wordpress.com/2018/12/SlugMSlogo.png"  width="370" height="auto">
+<a href="https://drive.google.com/uc?export=view&id=<FILEID>"><img src="https://drive.google.com/uc?export=view&id=16f6w2on-uCddFykYjRoplU4PzQ9fYptJ" style="width: 650px; max-width: 100%; height: auto" title="Click to enlarge picture" />
 
 ## Head developer: Ronan C. P. Lana
 
